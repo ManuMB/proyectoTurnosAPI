@@ -1,22 +1,37 @@
 package com.digitalhouse.turnos.model;
 
+import jakarta.persistence.*;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+
+@Entity
+@Table
 public class Turno {
 
+    @Id
+    @SequenceGenerator(name = "turno_sequence", sequenceName = "turno_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_sequence")
     private Long id;
-    private String odontologo;      //Sería string o odontologo???
-    private String fecha;
-    private String hora;
+    private Odontologo odontologo;      //Sería string o odontologo???
+    private Date fecha;
+    private Time hora;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)       //Varios turnos pertenecen a un solo paciente
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
 
     public Turno() {
     }
 
-    public Turno(String odontologo, String fecha, String hora) {
+    public Turno(Odontologo odontologo, Date fecha, Time hora) {
         this.odontologo = odontologo;
         this.fecha = fecha;
         this.hora = hora;
     }
 
-    public Turno(Long id, String odontologo, String fecha, String hora) {
+    public Turno(Long id, Odontologo odontologo, Date fecha, Time hora) {
         this.id = id;
         this.odontologo = odontologo;
         this.fecha = fecha;
@@ -31,27 +46,27 @@ public class Turno {
         this.id = id;
     }
 
-    public String getOdontologo() {
+    public Odontologo getOdontologo() {
         return odontologo;
     }
 
-    public void setOdontologo(String odontologo) {
+    public void setOdontologo(Odontologo odontologo) {
         this.odontologo = odontologo;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public String getHora() {
+    public Time getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     }
 

@@ -44,7 +44,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
                 String apellido = result.getString("apellido");
                 String nombre = result.getString("nombre");
                 int dni = result.getInt("dni");
-                String fechaAlta = result.getString("fechaAlta");
+                Date fechaAlta = result.getDate("fechaAlta");
 
                 listaPacientes.add(new Paciente(id,apellido,nombre,dni,fechaAlta));
             }
@@ -75,7 +75,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
             statement.setString(2,paciente.getApellido());
             statement.setString(3,paciente.getNombre());
             statement.setInt(4,paciente.getDni());
-            statement.setString(5,paciente.getFechaAlta());
+            statement.setDate(5,paciente.getFechaAlta());
 
             statement.executeUpdate();
             logger.info("Paciente guardado con exito.");
@@ -109,7 +109,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
                 String apellido = result.getString("apellido");
                 String nombre = result.getString("nombre");
                 int dni = result.getInt("dni");
-                String fechaAlta = result.getString("fechaAlta");
+                Date fechaAlta = result.getDate("fechaAlta");
 
                 p = new Paciente(idPaciente,apellido,nombre,dni,fechaAlta);
             }

@@ -1,6 +1,9 @@
+/*
+
 package com.digitalhouse.turnos.dao.impl;
 
 import com.digitalhouse.turnos.dao.IDao;
+import com.digitalhouse.turnos.model.Odontologo;
 import com.digitalhouse.turnos.model.Turno;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -149,3 +152,6 @@ public class TurnoDaoH2 implements IDao<Turno> {
         return null;
     }
 }
+
+
+ */
