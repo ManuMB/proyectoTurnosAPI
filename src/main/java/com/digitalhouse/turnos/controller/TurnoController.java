@@ -1,6 +1,6 @@
 package com.digitalhouse.turnos.controller;
 
-import com.digitalhouse.turnos.service.TurnoService;
+import com.digitalhouse.turnos.service.impl.TurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,14 +1,22 @@
 package com.digitalhouse.turnos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+
 @Entity
-@Table
+@Table(name = "Pacientes")
 public class Paciente {
 
     @Id
@@ -21,6 +29,7 @@ public class Paciente {
     private Date fechaAlta;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)       //Un paciente puede tener varios domicilios.
+    @JsonIgnore
     private Set<Domicilio> domicilios = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)       //Varios odontologos pertenecen a un solo paciente
@@ -28,75 +37,6 @@ public class Paciente {
     private Odontologo odontologo;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)       //Un paciente puede tener varios turnos.
-    private Set<Domicilio> turnos = new HashSet<>();
-
-    public Paciente() {
-    }
-
-    public Paciente(String apellido, String nombre, int dni, Date fechaAlta) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.dni = dni;
-        this.fechaAlta = fechaAlta;
-    }
-
-    public Paciente(Long id, String apellido, String nombre, int dni, Date fechaAlta) {
-        this.id = id;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.dni = dni;
-        this.fechaAlta = fechaAlta;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getDni() {
-        return dni;
-    }
-
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
-
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(Date fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Paciente{" +
-                "id=" + id +
-                ", apellido='" + apellido + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", dni=" + dni +
-                ", fechaAlta=" + fechaAlta +
-                '}';
-    }
+    @JsonIgnore
+    private Set<Turno> turnos = new HashSet<>();
 }
