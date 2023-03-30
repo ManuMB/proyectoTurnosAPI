@@ -1,15 +1,17 @@
 package com.digitalhouse.turnos.service;
 
+import com.digitalhouse.turnos.dto.TurnoDTO;
 import com.digitalhouse.turnos.model.Turno;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ITurnoService{
 
-    Turno guardarTurno(Turno turno);
-    Turno buscarTurno(Long id);
+    void guardarTurno(TurnoDTO turnoDTO);
+    TurnoDTO buscarTurno(Long id);
     void eliminarTurno(Long id);
-    Turno actualizarTurno(Turno turno);
-    List<Turno> listarTurnos();
+    void actualizarTurno(TurnoDTO turnoDTO);
+    Set<TurnoDTO> listarTurnos();
 
 }

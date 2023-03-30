@@ -1,15 +1,17 @@
 package com.digitalhouse.turnos.service;
 
+import com.digitalhouse.turnos.dto.OdontologoDTO;
 import com.digitalhouse.turnos.model.Odontologo;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IOdontologoService {
 
-    Odontologo guardarOdontologo(Odontologo odontologo);
-    Odontologo buscarOdontologo(Long id);
+    void guardarOdontologo(OdontologoDTO odontologoDTO);
+    OdontologoDTO buscarOdontologo(Long id);
     void eliminarOdontologo(Long id);
-    Odontologo actualizarOdontologo(Odontologo odontologo);
-    List<Odontologo> listarOdontologos();
+    void actualizarOdontologo(OdontologoDTO odontologoDTO);
+    Set<OdontologoDTO> listarOdontologos();
 
 }

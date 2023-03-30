@@ -1,5 +1,6 @@
 package com.digitalhouse.turnos.service.impl;
 
+import com.digitalhouse.turnos.dto.DomicilioDTO;
 import com.digitalhouse.turnos.model.Domicilio;
 import com.digitalhouse.turnos.repository.IDomicilioRepository;
 import com.digitalhouse.turnos.service.IDomicilioService;
@@ -7,7 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DomicilioService implements IDomicilioService{
@@ -18,28 +22,43 @@ public class DomicilioService implements IDomicilioService{
     @Autowired
     ObjectMapper objectMapper;
 
+
     @Override
-    public Domicilio guardarDomicilio(Domicilio domicilio) {
-        return null;
+    public void guardarDomicilio(DomicilioDTO domicilioDTO) {
+        Domicilio domicilio = objectMapper.convertValue(domicilioDTO, Domicilio.class);
+        iDomicilioRepository.save(domicilio);
     }
 
     @Override
-    public Domicilio buscarDomicilio(Long id) {
-        return null;
+    public DomicilioDTO buscarDomicilio(Long id) {
+        DomicilioDTO domicilioDTO = null;
+
+        Optional<Domicilio> domicilioBusqueda = iDomicilioRepository.findById(id);
+        if(domicilioBusqueda.isPresent())
+            domicilioDTO = objectMapper.convertValue(domicilioBusqueda, DomicilioDTO.class);
+
+        return domicilioDTO;
     }
 
     @Override
     public void eliminarDomicilio(Long id) {
-
+        iDomicilioRepository.deleteById(id);
     }
 
     @Override
-    public Domicilio actualizarDomicilio(Domicilio domicilio) {
-        return null;
+    public void actualizarDomicilio(DomicilioDTO domicilioDTO) {
+        Domicilio domicilio = objectMapper.convertValue(domicilioDTO, Domicilio.class);
+        iDomicilioRepository.save(domicilio);
     }
 
     @Override
-    public List<Domicilio> listarDomicilios() {
-        return null;
+    public Set<DomicilioDTO> listarDomicilios() {
+        List<Domicilio> listaDomicilio = iDomicilioRepository.findAll();
+        Set<DomicilioDTO> listaDTO = new HashSet<>();
+
+        for(Domicilio d : listaDomicilio)
+            listaDTO.add(objectMapper.convertValue(d, DomicilioDTO.class));
+
+        return listaDTO;
     }
 }

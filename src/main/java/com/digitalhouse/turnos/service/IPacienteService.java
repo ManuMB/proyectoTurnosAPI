@@ -1,15 +1,18 @@
 package com.digitalhouse.turnos.service;
 
+import com.digitalhouse.turnos.dto.PacienteDTO;
 import com.digitalhouse.turnos.model.Paciente;
+import org.hibernate.mapping.Collection;
+import java.util.Set;
 
 import java.util.List;
 
 public interface IPacienteService {
 
-    Paciente guardarPaciente(Paciente paciente);
-    Paciente buscarPaciente(Long id);
+    void guardarPaciente(PacienteDTO pacienteDTO);
+    PacienteDTO buscarPaciente(Long id);
     void eliminarPaciente(Long id);
-    Paciente actualizarPaciente(Paciente paciente);
-    List<Paciente> listarPacientes();
+    void actualizarPaciente(PacienteDTO pacienteDTO);
+    Set<PacienteDTO> listarPacientes();
 
 }
