@@ -23,6 +23,13 @@ public class PacienteService implements IPacienteService {
     @Autowired
     private IPacienteRepository iPacienteRepository;
 
+/*
+    public PacienteService(IPacienteRepository iPacienteRepository) {
+        this.iPacienteRepository = iPacienteRepository;
+    }
+
+ */
+
     @Autowired
     ObjectMapper objectMapper;
 

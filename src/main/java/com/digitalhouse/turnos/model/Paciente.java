@@ -32,10 +32,6 @@ public class Paciente {
     @JsonIgnore
     private Set<Domicilio> domicilios = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)       //Varios odontologos pertenecen a un solo paciente
-    @JoinColumn(name = "odontologo_id")
-    private Odontologo odontologo;
-
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)       //Un paciente puede tener varios turnos.
     @JsonIgnore
     private Set<Turno> turnos = new HashSet<>();

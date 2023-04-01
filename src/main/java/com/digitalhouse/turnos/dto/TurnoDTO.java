@@ -1,13 +1,13 @@
 package com.digitalhouse.turnos.dto;
 
 import com.digitalhouse.turnos.model.Odontologo;
+import com.digitalhouse.turnos.model.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @Getter
@@ -16,7 +16,7 @@ import java.sql.Time;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDTO {
 
+    private Timestamp fechaHora;
+    private Paciente paciente;
     private Odontologo odontologo;
-    private Date fecha;
-    private Time hora;
 }

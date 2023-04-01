@@ -25,10 +25,6 @@ public class Odontologo {
     private String nombre;
     private int matricula;
 
-    @OneToMany(mappedBy = "odontologo", fetch = FetchType.LAZY)     //Un odontologo puede tener varios pacientes. Lazy es que va cargando a medida que vas pidiendo en vez de cargar todos de una.
-    @JsonIgnore
-    private Set<Paciente> pacientes = new HashSet<>();
-
     @OneToMany(mappedBy = "odontologo", fetch = FetchType.LAZY)       //Un odontologo puede tener varios turnos.
     @JsonIgnore
     private Set<Turno> turnos = new HashSet<>();
